@@ -1,0 +1,10 @@
+
+
+> create-shoply-app@2.0.7 build
+> rimraf dist && tsc -p ./tsconfig.build.json
+
+[1G[0K[1G[0K⠙[1G[0K
+> create-shoply-app@2.0.7 postbuild
+> chmod +x ./dist/index.js
+
+[1G[0K⠙[1G[0K[1G[0K⠙[1G[0K

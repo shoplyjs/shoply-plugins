@@ -1,0 +1,30 @@
+{
+  "name": "create-shoply-app",
+  "version": "2.0.7",
+  "main": "dist",
+  "private": false,
+  "bin": {
+    "create-shoply-app": "./dist/index.js"
+  },
+  "files": [
+    "dist/**/*",
+    "src/**/*"
+  ],
+  "scripts": {
+    "dev": "ts-node ./src/index.ts",
+    "build": "rimraf dist && tsc -p ./tsconfig.build.json",
+    "postbuild": "chmod +x ./dist/index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "commander": "^13.0.0",
+    "dotenv": "^16.4.7",
+    "simple-git": "^3.27.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

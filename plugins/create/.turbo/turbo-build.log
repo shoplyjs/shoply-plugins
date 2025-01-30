@@ -1,0 +1,10 @@
+
+
+> @shoplyjs/create@2.3.4 build
+> npm run copy-assets && rimraf lib && tsc -p ./tsconfig.build.json
+
+[1G[0K
+> @shoplyjs/create@2.3.4 copy-assets
+> rimraf assets && ts-node ./build.ts
+
+[1G[0K[1G[0K⠙[1G[0K[1G[0K⠙[1G[0K

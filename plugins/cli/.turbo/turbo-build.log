@@ -1,0 +1,6 @@
+
+
+> @shoplyjs/cli@2.3.4 build
+> rimraf dist && tsc -p ./tsconfig.cli.json && ts-node ./build.ts
+
+[1G[0K[1G[0K⠙[1G[0K

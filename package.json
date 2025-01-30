@@ -1,0 +1,14 @@
+{
+  "name": "shoply-plugins",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">= 18"
+  },
+  "workspaces": {
+    "packages": [
+      "plugins/*"
+    ]
+  },
+  "packageManager": "npm@10.8.2"
+}

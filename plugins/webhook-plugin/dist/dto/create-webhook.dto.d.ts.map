@@ -1,0 +1,1 @@
+{"version":3,"file":"create-webhook.dto.d.ts","sourceRoot":"","sources":["../../src/dto/create-webhook.dto.ts"],"names":[],"mappings":"AAIA,qBAAa,gBAAgB;IAYzB,KAAK,EAAE,MAAM,CAAC;IASd,GAAG,EAAE,MAAM,CAAC;IAYZ,MAAM,EAAE,MAAM,CAAC;IAUf,OAAO,EAAE,MAAM,CAAC,MAAM,EAAE,MAAM,CAAC,CAAC;CACnC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"webhook.event.js","sourceRoot":"","sources":["../src/webhook.event.ts"],"names":[],"mappings":";;;AAAA,yCAA8D;AAM9D;;;;;;;;GAQG;AACH,MAAa,YAAa,SAAQ,mBAAY;IAC1C,YACW,GAAmB,EACnB,OAA4C,EAC5C,IAAsB;QAE7B,KAAK,EAAE,CAAC;QAJD,QAAG,GAAH,GAAG,CAAgB;QACnB,YAAO,GAAP,OAAO,CAAqC;QAC5C,SAAI,GAAJ,IAAI,CAAkB;IAGjC,CAAC;CACJ;AARD,oCAQC"}

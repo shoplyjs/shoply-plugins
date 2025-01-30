@@ -1,0 +1,6 @@
+
+
+> @shoplyjs/metrics-plugin@2.3.5 build
+> tsc -p ./tsconfig.build.json
+
+[1G[0K[1G[0K⠙[1G[0K
