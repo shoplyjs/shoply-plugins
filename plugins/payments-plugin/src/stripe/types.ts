@@ -1,21 +1,23 @@
-import '@shoplyjs/core/dist/entity/custom-entity-fields';
-import type { Injector, Order, RequestContext } from '@shoplyjs/core';
-import type { Request } from 'express';
-import type Stripe from 'stripe';
+import "@shoplyjs/core/dist/entity/custom-entity-fields";
+import type { Injector, Order, RequestContext } from "@shoplyjs/core";
+import type { Request } from "express";
+import type Stripe from "stripe";
 
 // Note: deep import is necessary here because CustomCustomerFields is also extended in the Braintree
 // plugin. Reference: https://github.com/microsoft/TypeScript/issues/46617
-declare module '@shoplyjs/core/dist/entity/custom-entity-fields' {
+declare module "@shoplyjs/core/dist/entity/custom-entity-fields" {
     interface CustomCustomerFields {
         stripeCustomerId?: string;
     }
 }
 
 type AdditionalPaymentIntentCreateParams = Partial<
-    Omit<Stripe.PaymentIntentCreateParams, 'amount' | 'currency' | 'customer'>
+    Omit<Stripe.PaymentIntentCreateParams, "amount" | "currency" | "customer">
 >;
 
-type AdditionalCustomerCreateParams = Partial<Omit<Stripe.CustomerCreateParams, 'email'>>;
+type AdditionalCustomerCreateParams = Partial<
+    Omit<Stripe.CustomerCreateParams, "email">
+>;
 
 /**
  * @description
@@ -42,7 +44,7 @@ export interface StripePluginOptions {
      *
      * @example
      * ```ts
-     * import { EntityHydrator, VendureConfig } from '\@vendure/core';
+     * import { EntityHydrator, VendureConfig } from '\@shoplyjs/core';
      * import { StripePlugin } from '\@vendure/payments-plugin/package/stripe';
      *
      * export const config: VendureConfig = {
@@ -69,7 +71,7 @@ export interface StripePluginOptions {
     metadata?: (
         injector: Injector,
         ctx: RequestContext,
-        order: Order,
+        order: Order
     ) => Stripe.MetadataParam | Promise<Stripe.MetadataParam>;
 
     /**
@@ -81,7 +83,7 @@ export interface StripePluginOptions {
      *
      * @example
      * ```ts
-     * import { VendureConfig } from '\@vendure/core';
+     * import { VendureConfig } from '\@shoplyjs/core';
      * import { StripePlugin } from '\@vendure/payments-plugin/package/stripe';
      *
      * export const config: VendureConfig = {
@@ -104,8 +106,10 @@ export interface StripePluginOptions {
     paymentIntentCreateParams?: (
         injector: Injector,
         ctx: RequestContext,
-        order: Order,
-    ) => AdditionalPaymentIntentCreateParams | Promise<AdditionalPaymentIntentCreateParams>;
+        order: Order
+    ) =>
+        | AdditionalPaymentIntentCreateParams
+        | Promise<AdditionalPaymentIntentCreateParams>;
 
     /**
      * @description
@@ -116,7 +120,7 @@ export interface StripePluginOptions {
      *
      * @example
      * ```ts
-     * import { EntityHydrator, VendureConfig } from '\@vendure/core';
+     * import { EntityHydrator, VendureConfig } from '\@shoplyjs/core';
      * import { StripePlugin } from '\@vendure/payments-plugin/package/stripe';
      *
      * export const config: VendureConfig = {
@@ -149,8 +153,10 @@ export interface StripePluginOptions {
     customerCreateParams?: (
         injector: Injector,
         ctx: RequestContext,
-        order: Order,
-    ) => AdditionalCustomerCreateParams | Promise<AdditionalCustomerCreateParams>;
+        order: Order
+    ) =>
+        | AdditionalCustomerCreateParams
+        | Promise<AdditionalCustomerCreateParams>;
 }
 
 export interface RequestWithRawBody extends Request {

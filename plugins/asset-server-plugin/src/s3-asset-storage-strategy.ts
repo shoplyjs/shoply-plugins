@@ -1,13 +1,16 @@
-import { PutObjectRequest, S3ClientConfig } from '@aws-sdk/client-s3';
-import { AwsCredentialIdentity, AwsCredentialIdentityProvider } from '@aws-sdk/types';
-import { AssetStorageStrategy, Logger } from '@shoplyjs/core';
-import { Request } from 'express';
-import * as path from 'node:path';
-import { Readable } from 'node:stream';
+import { PutObjectRequest, S3ClientConfig } from "@aws-sdk/client-s3";
+import {
+    AwsCredentialIdentity,
+    AwsCredentialIdentityProvider,
+} from "@aws-sdk/types";
+import { AssetStorageStrategy, Logger } from "@shoplyjs/core";
+import { Request } from "express";
+import * as path from "node:path";
+import { Readable } from "node:stream";
 
-import { getAssetUrlPrefixFn } from './common';
-import { loggerCtx } from './constants';
-import { AssetServerOptions } from './types';
+import { getAssetUrlPrefixFn } from "./common";
+import { loggerCtx } from "./constants";
+import { AssetServerOptions } from "./types";
 
 /**
  * @description
@@ -60,7 +63,7 @@ export interface S3Config {
  * @example
  * ```ts
  * import { AssetServerPlugin, configureS3AssetStorage } from '\@vendure/asset-server-plugin';
- * import { DefaultAssetNamingStrategy } from '\@vendure/core';
+ * import { DefaultAssetNamingStrategy } from '\@shoplyjs/core';
  * import { fromEnv } from '\@aws-sdk/credential-providers';
  *
  * // ...
@@ -87,7 +90,7 @@ export interface S3Config {
  * @example
  * ```ts
  * import { AssetServerPlugin, configureS3AssetStorage } from '\@vendure/asset-server-plugin';
- * import { DefaultAssetNamingStrategy } from '\@vendure/core';
+ * import { DefaultAssetNamingStrategy } from '\@shoplyjs/core';
  *
  * // ...
  *
@@ -119,12 +122,17 @@ export interface S3Config {
 export function configureS3AssetStorage(s3Config: S3Config) {
     return (options: AssetServerOptions) => {
         const prefixFn = getAssetUrlPrefixFn(options);
-        const toAbsoluteUrlFn = (request: Request, identifier: string): string => {
+        const toAbsoluteUrlFn = (
+            request: Request,
+            identifier: string
+        ): string => {
             if (!identifier) {
-                return '';
+                return "";
             }
             const prefix = prefixFn(request, identifier);
-            return identifier.startsWith(prefix) ? identifier : `${prefix}${identifier}`;
+            return identifier.startsWith(prefix)
+                ? identifier
+                : `${prefix}${identifier}`;
         };
         return new S3AssetStorageStrategy(s3Config, toAbsoluteUrlFn);
     };
@@ -153,33 +161,36 @@ export function configureS3AssetStorage(s3Config: S3Config) {
  * @docsWeight 0
  */
 export class S3AssetStorageStrategy implements AssetStorageStrategy {
-    private AWS: typeof import('@aws-sdk/client-s3');
-    private libStorage: typeof import('@aws-sdk/lib-storage');
-    private s3Client: import('@aws-sdk/client-s3').S3Client;
+    private AWS: typeof import("@aws-sdk/client-s3");
+    private libStorage: typeof import("@aws-sdk/lib-storage");
+    private s3Client: import("@aws-sdk/client-s3").S3Client;
 
     constructor(
         private s3Config: S3Config,
-        public readonly toAbsoluteUrl: (request: Request, identifier: string) => string,
+        public readonly toAbsoluteUrl: (
+            request: Request,
+            identifier: string
+        ) => string
     ) {}
 
     async init() {
         try {
-            this.AWS = await import('@aws-sdk/client-s3');
+            this.AWS = await import("@aws-sdk/client-s3");
         } catch (err: any) {
             Logger.error(
                 'Could not find the "@aws-sdk/client-s3" package. Make sure it is installed',
                 loggerCtx,
-                err.stack,
+                err.stack
             );
         }
 
         try {
-            this.libStorage = await import('@aws-sdk/lib-storage');
+            this.libStorage = await import("@aws-sdk/lib-storage");
         } catch (err: any) {
             Logger.error(
                 'Could not find the "@aws-sdk/lib-storage" package. Make sure it is installed',
                 loggerCtx,
-                err.stack,
+                err.stack
             );
         }
 
@@ -208,7 +219,7 @@ export class S3AssetStorageStrategy implements AssetStorageStrategy {
 
         if (!body) {
             Logger.error(`Got undefined Body for ${identifier}`, loggerCtx);
-            return Buffer.from('');
+            return Buffer.from("");
         }
 
         const chunks: Buffer[] = [];
@@ -236,11 +247,16 @@ export class S3AssetStorageStrategy implements AssetStorageStrategy {
     private async readFile(identifier: string) {
         const { GetObjectCommand } = this.AWS;
 
-        const result = await this.s3Client.send(new GetObjectCommand(this.getObjectParams(identifier)));
+        const result = await this.s3Client.send(
+            new GetObjectCommand(this.getObjectParams(identifier))
+        );
         return result.Body as Readable | undefined;
     }
 
-    private async writeFile(fileName: string, data: PutObjectRequest['Body'] | string | Uint8Array | Buffer) {
+    private async writeFile(
+        fileName: string,
+        data: PutObjectRequest["Body"] | string | Uint8Array | Buffer
+    ) {
         const { Upload } = this.libStorage;
 
         const upload = new Upload({
@@ -253,8 +269,8 @@ export class S3AssetStorageStrategy implements AssetStorageStrategy {
             },
         });
 
-        return upload.done().then(result => {
-            if (!('Key' in result) || !result.Key) {
+        return upload.done().then((result) => {
+            if (!("Key" in result) || !result.Key) {
                 Logger.error(`Got undefined Key for ${fileName}`, loggerCtx);
                 throw new Error(`Got undefined Key for ${fileName}`);
             }
@@ -265,14 +281,18 @@ export class S3AssetStorageStrategy implements AssetStorageStrategy {
 
     async deleteFile(identifier: string) {
         const { DeleteObjectCommand } = this.AWS;
-        await this.s3Client.send(new DeleteObjectCommand(this.getObjectParams(identifier)));
+        await this.s3Client.send(
+            new DeleteObjectCommand(this.getObjectParams(identifier))
+        );
     }
 
     async fileExists(fileName: string) {
         const { HeadObjectCommand } = this.AWS;
 
         try {
-            await this.s3Client.send(new HeadObjectCommand(this.getObjectParams(fileName)));
+            await this.s3Client.send(
+                new HeadObjectCommand(this.getObjectParams(fileName))
+            );
             return true;
         } catch (err: any) {
             return false;
@@ -282,7 +302,7 @@ export class S3AssetStorageStrategy implements AssetStorageStrategy {
     private getObjectParams(identifier: string) {
         return {
             Bucket: this.s3Config.bucket,
-            Key: path.join(identifier.replace(/^\//, '')),
+            Key: path.join(identifier.replace(/^\//, "")),
         };
     }
 
@@ -295,18 +315,24 @@ export class S3AssetStorageStrategy implements AssetStorageStrategy {
             return;
         } catch (err: any) {
             Logger.verbose(
-                `Could not find bucket "${bucket}: ${JSON.stringify(err.message)}". Attempting to create...`,
+                `Could not find bucket "${bucket}: ${JSON.stringify(
+                    err.message
+                )}". Attempting to create...`
             );
         }
 
         try {
-            await this.s3Client.send(new CreateBucketCommand({ Bucket: bucket, ACL: 'private' }));
+            await this.s3Client.send(
+                new CreateBucketCommand({ Bucket: bucket, ACL: "private" })
+            );
             Logger.verbose(`Created S3 bucket "${bucket}"`, loggerCtx);
         } catch (err: any) {
             Logger.error(
-                `Could not find nor create the S3 bucket "${bucket}: ${JSON.stringify(err.message)}"`,
+                `Could not find nor create the S3 bucket "${bucket}: ${JSON.stringify(
+                    err.message
+                )}"`,
                 loggerCtx,
-                err.stack,
+                err.stack
             );
         }
     }
@@ -320,9 +346,9 @@ export class S3AssetStorageStrategy implements AssetStorageStrategy {
             Logger.warn(
                 'The "profile" property of the "s3Config.credentials" is deprecated. ' +
                     'Please use the "fromIni()" function from the "@aws-sdk/credential-provider-ini" or "@aws-sdk/credential-providers" package instead.',
-                loggerCtx,
+                loggerCtx
             );
-            return (await import('@aws-sdk/credential-provider-ini')).fromIni({
+            return (await import("@aws-sdk/credential-provider-ini")).fromIni({
                 profile: this.s3Config.credentials.profile,
             });
         }
@@ -331,12 +357,12 @@ export class S3AssetStorageStrategy implements AssetStorageStrategy {
     }
 
     private isCredentialsProfile(
-        credentials: AwsCredentialIdentity | AwsCredentialIdentityProvider,
+        credentials: AwsCredentialIdentity | AwsCredentialIdentityProvider
     ): credentials is AwsCredentialIdentity & { profile: string } {
         return (
             credentials !== null &&
-            typeof credentials === 'object' &&
-            'profile' in credentials &&
+            typeof credentials === "object" &&
+            "profile" in credentials &&
             Object.keys(credentials).length === 1
         );
     }

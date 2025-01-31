@@ -1,17 +1,6 @@
 
-Debugger listening on ws://127.0.0.1:60536/14fe04f7-1980-40ae-a292-47698d104726
-For help, see: https://nodejs.org/en/docs/inspector
-Debugger attached.
-
-> @shoplyjs/payments-plugin@2.3.4 build
+
+> @shoplyjs/payments-plugin@2.3.5 build
 > rimraf package && tsc -p ./tsconfig.build.json
 
-[1G[0KDebugger listening on ws://127.0.0.1:60538/adbe7621-6dcc-49ee-b94d-422d66c58471
-For help, see: https://nodejs.org/en/docs/inspector
-Debugger attached.
-Waiting for the debugger to disconnect...
-Debugger listening on ws://127.0.0.1:60544/8ffa9b47-c6fd-4049-a9e7-aa077d113aa5
-For help, see: https://nodejs.org/en/docs/inspector
-Debugger attached.
-Waiting for the debugger to disconnect...
-[1G[0K⠙[1G[0KWaiting for the debugger to disconnect...
+[1G[0K

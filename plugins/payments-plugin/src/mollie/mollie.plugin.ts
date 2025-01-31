@@ -1,4 +1,4 @@
-import type { ListParameters } from '@mollie/api-client/dist/types/binders/methods/parameters';
+import type { ListParameters } from "@mollie/api-client/dist/types/binders/methods/parameters";
 import {
     Injector,
     Order,
@@ -6,18 +6,20 @@ import {
     RequestContext,
     RuntimeVendureConfig,
     VendurePlugin,
-} from '@shoplyjs/core';
+} from "@shoplyjs/core";
 
-import { shopApiExtensions, adminApiExtensions } from './api-extensions';
-import { PLUGIN_INIT_OPTIONS } from './constants';
-import { orderCustomFields } from './custom-fields';
-import { MollieCommonResolver } from './mollie.common-resolver';
-import { MollieController } from './mollie.controller';
-import { molliePaymentHandler } from './mollie.handler';
-import { MollieService } from './mollie.service';
-import { MollieShopResolver } from './mollie.shop-resolver';
+import { shopApiExtensions, adminApiExtensions } from "./api-extensions";
+import { PLUGIN_INIT_OPTIONS } from "./constants";
+import { orderCustomFields } from "./custom-fields";
+import { MollieCommonResolver } from "./mollie.common-resolver";
+import { MollieController } from "./mollie.controller";
+import { molliePaymentHandler } from "./mollie.handler";
+import { MollieService } from "./mollie.service";
+import { MollieShopResolver } from "./mollie.shop-resolver";
 
-export type AdditionalEnabledPaymentMethodsParams = Partial<Omit<ListParameters, 'resource'>>;
+export type AdditionalEnabledPaymentMethodsParams = Partial<
+    Omit<ListParameters, "resource">
+>;
 
 /**
  * @description
@@ -46,7 +48,7 @@ export interface MolliePluginOptions {
      *
      * @example
      * ```ts
-     * import { VendureConfig } from '\@vendure/core';
+     * import { VendureConfig } from '\@shoplyjs/core';
      * import { MolliePlugin, getLocale } from '\@vendure/payments-plugin/package/mollie';
      *
      * export const config: VendureConfig = {
@@ -73,8 +75,10 @@ export interface MolliePluginOptions {
     enabledPaymentMethodsParams?: (
         injector: Injector,
         ctx: RequestContext,
-        order: Order | null,
-    ) => AdditionalEnabledPaymentMethodsParams | Promise<AdditionalEnabledPaymentMethodsParams>;
+        order: Order | null
+    ) =>
+        | AdditionalEnabledPaymentMethodsParams
+        | Promise<AdditionalEnabledPaymentMethodsParams>;
 }
 
 /**
@@ -192,7 +196,13 @@ export interface MolliePluginOptions {
 @VendurePlugin({
     imports: [PluginCommonModule],
     controllers: [MollieController],
-    providers: [MollieService, { provide: PLUGIN_INIT_OPTIONS, useFactory: () => MolliePlugin.options }],
+    providers: [
+        MollieService,
+        {
+            provide: PLUGIN_INIT_OPTIONS,
+            useFactory: () => MolliePlugin.options,
+        },
+    ],
     configuration: (config: RuntimeVendureConfig) => {
         config.paymentOptions.paymentMethodHandlers.push(molliePaymentHandler);
         config.customFields.Order.push(...orderCustomFields);
@@ -206,7 +216,7 @@ export interface MolliePluginOptions {
         schema: adminApiExtensions,
         resolvers: [MollieCommonResolver],
     },
-    compatibility: '^2.2.0',
+    compatibility: "^2.2.0",
 })
 export class MolliePlugin {
     static options: MolliePluginOptions;

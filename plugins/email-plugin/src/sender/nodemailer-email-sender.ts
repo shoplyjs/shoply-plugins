@@ -138,6 +138,7 @@ export class NodemailerEmailSender implements EmailSender {
         return new Promise<string>((resolve, reject) => {
             writeStream.on('open', () => {
                 info.message.pipe(writeStream);
+                //@ts-ignore
                 writeStream.on('close', resolve);
                 writeStream.on('error', reject);
             });

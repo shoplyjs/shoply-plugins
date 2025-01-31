@@ -1,9 +1,8 @@
 import fs from 'fs-extra';
 import path from 'path';
+import { initialData } from '@shoplyjs/common/mock-data/data-sources/initial-data';
 
-import { initialData } from '../core/mock-data/data-sources/initial-data';
-
-const dataDir = path.join(__dirname, '../core/mock-data');
+const dataDir = path.join(__dirname, '@shoplyjs/common/mock-data');
 
 function copyTemplates() {
     return fs.copy('./templates', './assets');

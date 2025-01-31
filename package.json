@@ -5,10 +5,18 @@
   "engines": {
     "node": ">= 18"
   },
+  "scripts": {
+    "build": "turbo run build"
+  },
   "workspaces": {
     "packages": [
       "plugins/*"
     ]
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.9",
+    "turbo": "^2.3.4"
   },
   "packageManager": "npm@10.8.2"
 }

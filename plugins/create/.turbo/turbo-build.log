@@ -7,4 +7,39 @@
 > @shoplyjs/create@2.3.4 copy-assets
 > rimraf assets && ts-node ./build.ts
 
-[1G[0K[1G[0K⠙[1G[0K[1G[0K⠙[1G[0K
+[1G[0K/Users/user/Projects/shoply-plugins/node_modules/ts-node/src/index.ts:859
+    return new TSError(diagnosticText, diagnosticCodes, diagnostics);
+           ^
+TSError: ⨯ Unable to compile TypeScript:
+[96mbuild.ts[0m:[93m3[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '@shoplyjs/common/mock-data/data-sources/initial-data' or its corresponding type declarations.
+
+[7m3[0m import { initialData } from '@shoplyjs/common/mock-data/data-sources/initial-data';
+[7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/user/Projects/shoply-plugins/node_modules/[4mts-node[24m/src/index.ts:859:12)
+    at reportTSError (/Users/user/Projects/shoply-plugins/node_modules/[4mts-node[24m/src/index.ts:863:19)
+    at getOutput (/Users/user/Projects/shoply-plugins/node_modules/[4mts-node[24m/src/index.ts:1077:36)
+    at Object.compile (/Users/user/Projects/shoply-plugins/node_modules/[4mts-node[24m/src/index.ts:1433:41)
+    at Module.m._compile (/Users/user/Projects/shoply-plugins/node_modules/[4mts-node[24m/src/index.ts:1617:30)
+[90m    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)[39m
+    at Object.require.extensions.<computed> [as .ts] (/Users/user/Projects/shoply-plugins/node_modules/[4mts-node[24m/src/index.ts:1621:12)
+[90m    at Module.load (node:internal/modules/cjs/loader:1288:32)[39m
+[90m    at Function.Module._load (node:internal/modules/cjs/loader:1104:12)[39m
+[90m    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:173:12)[39m {
+  diagnosticCodes: [ [33m2307[39m ]
+}
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m Lifecycle script `copy-assets` failed with error:
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcode[39m [33m1[39m
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mpath[39m /Users/user/Projects/shoply-plugins/plugins/create
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mworkspace[39m @shoplyjs/create@2.3.4
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mlocation[39m /Users/user/Projects/shoply-plugins/plugins/create
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m command failed
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcommand[39m sh -c rimraf assets && ts-node ./build.ts
+[1G[0K⠙[1G[0K[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m Lifecycle script `build` failed with error:
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcode[39m [33m1[39m
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mpath[39m /Users/user/Projects/shoply-plugins/plugins/create
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mworkspace[39m @shoplyjs/create@2.3.4
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mlocation[39m /Users/user/Projects/shoply-plugins/plugins/create
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m command failed
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcommand[39m sh -c npm run copy-assets && rimraf lib && tsc -p ./tsconfig.build.json
+[1G[0K⠙[1G[0K

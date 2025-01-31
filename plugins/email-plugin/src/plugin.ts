@@ -183,8 +183,8 @@ import {
  *   emailVerificationHandler,
  *   passwordResetHandler,
  *   emailAddressChangeHandler,
- * } from '\@vendure/email-plugin';
- * import { CustomerService } from '\@vendure/core';
+ * } from '\@shoplyjs/email-plugin';
+ * import { CustomerService } from '\@shoplyjs/core';
  *
  * // This allows you to then customize each handler to your needs.
  * // For example, let's set a new subject line to the order confirmation:

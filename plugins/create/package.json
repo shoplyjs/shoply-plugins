@@ -13,7 +13,7 @@
   "scripts": {
     "dev": "ts-node src/create-vendure-app.ts",
     "copy-assets": "rimraf assets && ts-node ./build.ts",
-    "build": "npm run copy-assets && rimraf lib && tsc -p ./tsconfig.build.json",
+    "_build": "npm run copy-assets && rimraf lib && tsc -p ./tsconfig.build.json",
     "watch": "npm run copy-assets && rimraf lib && tsc -p ./tsconfig.build.json -w",
     "lint": "eslint --fix ."
   },
@@ -28,14 +28,14 @@
     "@types/fs-extra": "^11.0.4",
     "@types/handlebars": "^4.1.0",
     "@types/semver": "^7.5.8",
-    "@shoplyjs/core": "^2.3.3",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
     "typescript": "5.3.3"
   },
   "dependencies": {
+    "@shoplyjs/core": "^2.3.3",
     "@clack/prompts": "^0.7.0",
-    "@shoplyjs/common": "^2.3.3",
+    "@shoplyjs/common": "^2.3.7",
     "commander": "^11.0.0",
     "cross-spawn": "^7.0.3",
     "detect-port": "^1.5.1",

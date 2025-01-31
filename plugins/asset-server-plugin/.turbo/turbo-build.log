@@ -1,6 +1,6 @@
 
 
-> @shoplyjs/asset-server-plugin@2.3.4 build
+> @shoplyjs/asset-server-plugin@2.3.5 build
 > rimraf lib && tsc -p ./tsconfig.build.json && node build.js
 
 [1G[0K[1G[0K⠙[1G[0K

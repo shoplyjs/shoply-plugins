@@ -3,4 +3,27 @@
 > @shoplyjs/webhook-plugin@1.1.1 build
 > tsc -p ./tsconfig.build.json
 
-[1G[0K[1G[0K⠙[1G[0K
+[1G[0K[96msrc/services/webhook-event-handler.ts[0m:[93m1[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '@nestjs/event-emitter' or its corresponding type declarations.
+
+[7m1[0m import { EventEmitter2 } from '@nestjs/event-emitter';
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/services/webhook.service.ts[0m:[93m4[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '@nestjs/event-emitter' or its corresponding type declarations.
+
+[7m4[0m import { EventEmitter2 } from '@nestjs/event-emitter';
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Found 2 errors in 2 files.
+
+Errors  Files
+     1  src/services/webhook-event-handler.ts[90m:1[0m
+     1  src/services/webhook.service.ts[90m:4[0m
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m Lifecycle script `build` failed with error:
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcode[39m [33m2[39m
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mpath[39m /Users/user/Projects/shoply-plugins/plugins/webhook-plugin
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mworkspace[39m @shoplyjs/webhook-plugin@1.1.1
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mlocation[39m /Users/user/Projects/shoply-plugins/plugins/webhook-plugin
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m command failed
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcommand[39m sh -c tsc -p ./tsconfig.build.json
+[1G[0K⠙[1G[0K

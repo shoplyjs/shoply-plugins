@@ -19,7 +19,7 @@ async function cloneStarter({ starterName }) {
     }
     try {
         // clone the starter repo
-        await git.clone(repoUrl, starterName, ['-b', 'starter']);
+        await git.clone(repoUrl, starterName, ['-b', 'develop']);
         console.log(`Cloning repository from ${repoUrl}...`);
         // navigate to the starter directory
         const repoPath = path_1.default.resolve(currentDir);
